@@ -3,7 +3,7 @@
 	gap: 1rem;
 
 	.icon {
-		color: white;
+		color: var(--color-white);
 		transition: color 0.3 ease-in-out;
 
 		&:hover {

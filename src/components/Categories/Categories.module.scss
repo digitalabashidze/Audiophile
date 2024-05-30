@@ -1,0 +1,15 @@
+.categories {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1.88rem;
+
+	@media (max-width: 1024px) {
+		gap: 0.62rem;
+	}
+
+	@media (max-width: 767px) {
+		flex-direction: column;
+		gap: 4.25rem;
+	}
+}

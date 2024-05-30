@@ -67,11 +67,15 @@ h6 {
 	padding-right: 15px;
 
 	@media (max-width: 1440px) {
-		max-width: 79.17%;
+		max-width: 80%;
+	}
+
+	@media (max-width: 1024px) {
+		max-width: 85%;
 	}
 
 	@media (max-width: 768px) {
-		max-width: 90%;
+		max-width: 95%;
 	}
 
 	@media (max-width: 576px) {

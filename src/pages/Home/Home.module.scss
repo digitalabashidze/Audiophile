@@ -1,0 +1,11 @@
+.categories-section {
+	padding: 12.5rem 0 10.5rem;
+
+	@media (max-width: 1024px) {
+		padding: 9rem 0 6rem;
+	}
+
+	@media (max-width: 767px) {
+		padding: 6rem 0 7.5rem;
+	}
+}
