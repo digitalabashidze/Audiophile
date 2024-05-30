@@ -1,0 +1,17 @@
+.header-category {
+	padding: 6rem 0;
+
+	.wrapper {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		h2 {
+			color: var(--color-white);
+		}
+	}
+
+	@media (max-width: 576px) {
+		padding: 2rem 0;
+	}
+}

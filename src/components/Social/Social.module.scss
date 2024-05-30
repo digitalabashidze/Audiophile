@@ -1,0 +1,13 @@
+.social {
+	display: flex;
+	gap: 1rem;
+
+	.icon {
+		color: white;
+		transition: color 0.3 ease-in-out;
+
+		&:hover {
+			color: var(--color-accent);
+		}
+	}
+}

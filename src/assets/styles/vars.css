@@ -1,0 +1,16 @@
+:root {
+	/* Colors */
+	--color-white: #ffffff;
+	--color-black: #000000;
+	--color-gray: #f1f1f1;
+	--color-gray-light: #fafafa;
+	--color-dark: #101010;
+	--color-accent: #d87d4a;
+	--color-accent-light: #fbaf85;
+
+	/* BreakPoints */
+
+	--breakpoint-sm: 576px;
+	--breakpoint-md: 768px;
+	--breakpoint-lg: 1439px;
+}
