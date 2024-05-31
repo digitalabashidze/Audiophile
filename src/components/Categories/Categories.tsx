@@ -9,13 +9,17 @@ interface Category {
 	img: string
 }
 
+interface CategoriesProps {
+	onClose?: () => void
+}
+
 const categories: Category[] = [
 	{ category: 'headphones', img: HeadPhoneImg },
 	{ category: 'speakers', img: SpeakerImg },
 	{ category: 'earphones', img: EarPhoneImg },
 ]
 
-const Categories = () => {
+const Categories = ({ onClose }: CategoriesProps) => {
 	return (
 		<div className={styles.categories}>
 			{categories.map(category => (
@@ -23,6 +27,7 @@ const Categories = () => {
 					key={category.category}
 					category={category.category}
 					img={category.img}
+					onClose={onClose}
 				/>
 			))}
 		</div>

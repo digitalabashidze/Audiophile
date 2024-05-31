@@ -3,22 +3,30 @@ import Button from '../Button/Button'
 import styles from './CategoryItem.module.scss'
 import { RiArrowRightSLine } from 'react-icons/ri'
 
-interface CategoryItem {
+interface CategoryItemProps {
 	category: string
 	img: string
+	onClose?: () => void
 }
 
-const CategoryItem = ({ category, img }: CategoryItem) => {
+const CategoryItem: React.FC<CategoryItemProps> = ({
+	category,
+	img,
+	onClose,
+}) => {
 	const navigate = useNavigate()
 
 	const handleClick = () => {
 		navigate(`/${category}`)
+		if (onClose) {
+			onClose()
+		}
 	}
 
 	return (
 		<div className={styles['category-item']}>
 			<div className={styles['image']}>
-				<img src={img} alt='headphones' />
+				<img src={img} alt={`${category}`} />
 			</div>
 			<h6>{category}</h6>
 			<Button

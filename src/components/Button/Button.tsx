@@ -2,7 +2,7 @@ import React, { ButtonHTMLAttributes } from 'react'
 import styles from './Button.module.scss'
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-	variant?: 'primary' | 'secondary' | 'icon'
+	variant?: 'primary' | 'secondary' | 'dark' | 'icon'
 	icon?: React.ReactNode
 	onClick?: () => void
 }

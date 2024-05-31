@@ -2,7 +2,7 @@
 	// background-color: var(--color-dark);
 
 	.header-wrapper {
-		padding: 2rem 0 2.25rem;
+		padding: 2.19rem 0 2.25rem;
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
@@ -23,6 +23,12 @@
 			color: var(--color-white);
 			width: 1.4375rem;
 			height: 1.25rem;
+		}
+	}
+
+	@media (max-width: 860px) {
+		.header-wrapper {
+			padding: 2rem 0 2.06rem;
 		}
 	}
 }

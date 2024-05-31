@@ -16,8 +16,6 @@ const AppLayout = () => {
 
 	const categoryName = categories[location.pathname]
 
-	console.log(categoryName)
-
 	return (
 		<div className={styles['app-layout']}>
 			<header className={isHomePage ? styles['header-hero'] : styles.header}>
