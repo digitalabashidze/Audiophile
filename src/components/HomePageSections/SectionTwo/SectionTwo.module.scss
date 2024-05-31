@@ -1,0 +1,32 @@
+.section-two {
+	padding: 6.5rem 0;
+	background-image: url('@images/shared/desktop/zx7-bg-desktop.png');
+	background-size: cover;
+	background-repeat: no-repeat;
+	border-radius: 0.5rem;
+
+	.section-desc {
+		padding-left: 6rem;
+
+		h4 {
+			margin-bottom: 2rem;
+		}
+	}
+
+	@media (max-width: 1024px) {
+		background-image: url('@images/shared/tablet/zx7-bg-tablet.png');
+
+		.section-desc {
+			padding-left: 3.89rem;
+		}
+	}
+
+	@media (max-width: 585px) {
+		background-image: url('@images/shared/mobile/zx7-bg-mobile.png');
+		background-position: center;
+
+		.section-desc {
+			padding-left: 1.5rem;
+		}
+	}
+}

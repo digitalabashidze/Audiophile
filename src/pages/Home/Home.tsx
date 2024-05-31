@@ -1,5 +1,7 @@
 import Categories from '../../components/Categories/Categories'
 import SectionOne from '../../components/HomePageSections/SectionOne/SectionOne'
+import SectionThree from '../../components/HomePageSections/SectionThree/SectionThree'
+import SectionTwo from '../../components/HomePageSections/SectionTwo/SectionTwo'
 import styles from './Home.module.scss'
 
 const Home = () => {
@@ -13,6 +15,16 @@ const Home = () => {
 			<div className={styles['section-one']}>
 				<div className='container'>
 					<SectionOne />
+				</div>
+			</div>
+			<div className={styles['section-two']}>
+				<div className='container'>
+					<SectionTwo />
+				</div>
+			</div>
+			<div className={styles['section-three']}>
+				<div className='container'>
+					<SectionThree />
 				</div>
 			</div>
 		</>

@@ -1,0 +1,36 @@
+.section-three {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 2rem;
+
+	.section-image {
+		background-color: #191919;
+		display: flex;
+		align-items: center;
+		justify-content: end;
+		border-radius: 0.5rem;
+		overflow: hidden;
+	}
+
+	.section-desc {
+		padding-left: 6rem;
+		border-radius: 0.5rem;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		gap: 2rem;
+		background-color: var(--color-gray);
+	}
+
+	@media (max-width: 1024px) {
+		gap: 1rem;
+		.section-desc {
+			padding-left: 2.56rem;
+		}
+	}
+
+	@media (max-width: 700px) {
+		grid-template-columns: 1fr;
+		grid-template-rows: repeat(2, 1fr);
+	}
+}
