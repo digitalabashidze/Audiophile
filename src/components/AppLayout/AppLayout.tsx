@@ -4,6 +4,7 @@ import Footer from '../Footer/Footer'
 import HeroSection from '../HeroSection/HeroSection'
 import HeaderCategorySection from '../HeaderCategorySection/HeaderCategorySection'
 import styles from './AppLayout.module.scss'
+import GearSection from '../GearSection/GearSection'
 
 const AppLayout = () => {
 	const location = useLocation()
@@ -26,6 +27,7 @@ const AppLayout = () => {
 			<main className={styles['main-content']}>
 				<Outlet />
 			</main>
+			<GearSection />
 			<Footer />
 		</div>
 	)
