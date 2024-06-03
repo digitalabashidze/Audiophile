@@ -1,0 +1,21 @@
+.categories-page {
+	padding-top: 10rem;
+
+	.wrapper {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 10rem;
+	}
+
+	@media (max-width: 1024px) {
+		padding-top: 7.5rem;
+
+		.wrapper {
+			gap: 7.5rem;
+		}
+	}
+
+	@media (max-width: 640px) {
+		padding-top: 4rem;
+	}
+}

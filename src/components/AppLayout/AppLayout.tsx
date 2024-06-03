@@ -5,6 +5,7 @@ import HeroSection from '../HeroSection/HeroSection'
 import HeaderCategorySection from '../HeaderCategorySection/HeaderCategorySection'
 import styles from './AppLayout.module.scss'
 import GearSection from '../GearSection/GearSection'
+import Categories from '../Categories/Categories'
 
 const AppLayout = () => {
 	const location = useLocation()
@@ -27,6 +28,11 @@ const AppLayout = () => {
 			<main className={styles['main-content']}>
 				<Outlet />
 			</main>
+			{!isHomePage && (
+				<div className={`container ${styles['padding']}`}>
+					<Categories />
+				</div>
+			)}
 			<GearSection />
 			<Footer />
 		</div>
