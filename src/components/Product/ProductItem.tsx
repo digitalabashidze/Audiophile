@@ -23,7 +23,7 @@ const ProductItem = ({ isReversed }: ProductItemProps) => {
 			</picture>
 
 			<div className={styles['product-desc']}>
-				<span className={styles['subtitle']}>NEW PRODUCT</span>
+				<span className='subtitle'>NEW PRODUCT</span>
 				<h2>XX99 Mark II Headphones</h2>
 				<p>
 					The new XX99 Mark II headphones is the pinnacle of pristine audio. It

@@ -59,6 +59,15 @@ h6 {
 	letter-spacing: 0.08038rem;
 }
 
+.subtitle {
+	display: block;
+	font-size: 0.875rem;
+	line-height: normal;
+	letter-spacing: 0.625rem;
+	text-transform: uppercase;
+	color: var(--color-accent);
+}
+
 .container {
 	width: 100%;
 	max-width: 1400px;
