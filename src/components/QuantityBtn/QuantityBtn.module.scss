@@ -17,5 +17,11 @@
 
 	.quantity-btn {
 		opacity: 0.25;
+		transition: all 0.3s ease-in;
+
+		&:hover {
+			opacity: 1;
+			color: var(--color-accent);
+		}
 	}
 }

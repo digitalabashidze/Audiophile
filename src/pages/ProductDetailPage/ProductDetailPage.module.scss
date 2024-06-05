@@ -1,0 +1,11 @@
+.product-detail-page {
+	padding-top: 4.94rem;
+
+	@media (max-width: 1023px) {
+		padding-top: 2.06rem;
+	}
+
+	@media (max-width: 767px) {
+		padding-top: 1rem;
+	}
+}

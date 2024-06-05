@@ -35,7 +35,6 @@
 			background-size: cover;
 		}
 	}
-
 	.header {
 		background-color: var(--color-black);
 	}
@@ -43,5 +42,9 @@
 	.padding {
 		padding-top: 15rem;
 		padding-bottom: 10rem;
+
+		@media (max-width: 1023px) {
+			padding-top: 10.75rem;
+		}
 	}
 }

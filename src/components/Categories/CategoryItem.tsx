@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom'
+import { RiArrowRightSLine } from 'react-icons/ri'
 import Button from '../Button/Button'
 import styles from './CategoryItem.module.scss'
-import { RiArrowRightSLine } from 'react-icons/ri'
 
 interface CategoryItemProps {
 	category: string
@@ -17,7 +17,7 @@ const CategoryItem: React.FC<CategoryItemProps> = ({
 	const navigate = useNavigate()
 
 	const handleClick = () => {
-		navigate(`/${category}`)
+		navigate(`/products/${category}`)
 		if (onClose) {
 			onClose()
 		}

@@ -10,10 +10,11 @@ import Categories from '../Categories/Categories'
 const AppLayout = () => {
 	const location = useLocation()
 	const isHomePage = location.pathname === '/'
+	const isCheckout = location.pathname === '/checkout'
 	const categories: { [key: string]: string } = {
-		'/headphones': 'Headphones',
-		'/speakers': 'Speakers',
-		'/earphones': 'Earphones',
+		'/products/headphones': 'Headphones',
+		'/products/speakers': 'Speakers',
+		'/products/earphones': 'Earphones',
 	}
 
 	const categoryName = categories[location.pathname]
@@ -28,12 +29,12 @@ const AppLayout = () => {
 			<main className={styles['main-content']}>
 				<Outlet />
 			</main>
-			{!isHomePage && (
+			{!isHomePage && !isCheckout && (
 				<div className={`container ${styles['padding']}`}>
 					<Categories />
 				</div>
 			)}
-			<GearSection />
+			{!isCheckout && <GearSection />}
 			<Footer />
 		</div>
 	)

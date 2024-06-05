@@ -8,9 +8,9 @@ interface NavItem {
 
 const navItems: NavItem[] = [
 	{ label: 'HOME', path: '/' },
-	{ label: 'HEADPHONES', path: '/headphones' },
-	{ label: 'SPEAKERS', path: '/speakers' },
-	{ label: 'EARPHONES', path: '/earphones' },
+	{ label: 'HEADPHONES', path: '/products/headphones' },
+	{ label: 'SPEAKERS', path: '/products/speakers' },
+	{ label: 'EARPHONES', path: '/products/earphones' },
 ]
 
 const Nav = () => {

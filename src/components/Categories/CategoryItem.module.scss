@@ -12,6 +12,18 @@
 	.image {
 		margin-top: -5rem;
 		margin-bottom: 2.25rem;
+		position: relative;
+
+		img {
+			filter: drop-shadow(0px 45px 22px rgba(0, 0, 0, 0.3));
+		}
+
+		.shadow {
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			transform: translate(-50%, -50%);
+		}
 	}
 
 	h6 {
