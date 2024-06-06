@@ -1,4 +1,4 @@
-import { Outlet, useLocation } from 'react-router-dom'
+import { Outlet, useLocation, ScrollRestoration } from 'react-router-dom'
 import Header from '../Header/Header'
 import Footer from '../Footer/Footer'
 import HeroSection from '../HeroSection/HeroSection'
@@ -28,6 +28,7 @@ const AppLayout = () => {
 			</header>
 			<main className={styles['main-content']}>
 				<Outlet />
+				<ScrollRestoration />
 			</main>
 			{!isHomePage && !isCheckout && (
 				<div className={`container ${styles['padding']}`}>

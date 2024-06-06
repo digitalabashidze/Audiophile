@@ -1,5 +1,9 @@
 import { supabase } from './supabase'
-import { Product } from '../types/generalTypes'
+import { Product, RelatedProductDetail } from '../types/generalTypes'
+
+export interface ExtendedProduct extends Product {
+	related_products_details: RelatedProductDetail[]
+}
 
 export const getProducts = async () => {
 	const { data, error } = await supabase.from('products').select(` id,
@@ -87,4 +91,78 @@ export const getProductsByCategoryName = async (
 	}
 
 	return data as Product[]
+}
+
+export const getProductsById = async (
+	productId: string
+): Promise<ExtendedProduct> => {
+	const { data: productData, error: productError } = await supabase
+		.from('products')
+		.select(
+			`
+            *,
+            product_images (
+                id,
+                type,
+                mobile_url,
+                tablet_url,
+                desktop_url
+            ),
+            product_includes (
+      id,
+      quantity,
+      item
+    ),
+     related_products:related_products!related_products_product_id_fkey (
+        id,
+        related_product_id
+      )
+        `
+		)
+		.eq('id', productId)
+		.single()
+
+	if (productError) {
+		console.error('Error fetching product:', productError)
+		throw new Error(productError.message)
+	}
+
+	if (!productData) {
+		throw new Error('Product data not found')
+	}
+
+	const mainProduct: ExtendedProduct = {
+		...productData,
+		related_products_details: [],
+	}
+
+	const relatedProductsIds = mainProduct.related_products.map(
+		rp => rp.related_product_id
+	)
+	const { data: relatedProductsData, error: relatedProductsError } =
+		await supabase
+			.from('products')
+			.select(
+				`*,  product_images (
+                id,
+                type,
+                mobile_url,
+                tablet_url,
+                desktop_url
+            )
+    `
+			)
+			.in('id', relatedProductsIds)
+
+	if (relatedProductsError) {
+		console.error('Error fetching related products:', relatedProductsError)
+		throw new Error(relatedProductsError.message)
+	}
+
+	if (relatedProductsData) {
+		mainProduct.related_products_details =
+			relatedProductsData as RelatedProductDetail[]
+	}
+
+	return mainProduct
 }

@@ -7,12 +7,15 @@ import Modal from '../Modal/Modal'
 import cartIcon from '@images/shared/desktop/icon-cart.svg'
 import hamburgerMenuIcon from '@images/shared/tablet/icon-hamburger.svg'
 import styles from './Header.module.scss'
+import Cart from '../Cart/Cart'
 
 const Header = () => {
 	const [isModalOpen, setIsModalOpen] = useState(false)
+	const [isCartOpen, setIsCartOpen] = useState(true)
 	const isTabletOrMobile = useMediaQuery({ query: '(max-width: 860px)' })
 
 	const closeModal = () => setIsModalOpen(false)
+	const closeCart = () => setIsCartOpen(false)
 
 	return (
 		<>
@@ -40,7 +43,10 @@ const Header = () => {
 							</div>
 						)}
 
-						<div className={styles.cart}>
+						<div
+							onClick={() => setIsCartOpen(!isCartOpen)}
+							className={styles.cart}
+						>
 							<img src={cartIcon} alt='cart icon' />
 						</div>
 					</div>
@@ -50,8 +56,22 @@ const Header = () => {
 			<Modal
 				style={{
 					alignSelf: 'flex-start',
+					right: '10rem',
+					borderRadius: '0.5rem',
+				}}
+				isOpen={isCartOpen}
+				onClose={closeCart}
+			>
+				<Cart />
+			</Modal>
+
+			<Modal
+				style={{
+					alignSelf: 'flex-start',
 					width: '100%',
 					padding: '6.75rem 0 4.19rem',
+					borderBottomLeftRadius: '0.5rem',
+					borderBottomRightRadius: '0.5rem',
 				}}
 				isOpen={isModalOpen}
 				onClose={closeModal}

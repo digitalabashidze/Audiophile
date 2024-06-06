@@ -26,13 +26,25 @@ export interface Product {
 	price: number
 	description: string
 	features: string
+	features_2: string
 	product_images: ProductImage[]
 	product_includes: ProductInclude[]
 	related_products: RelatedProduct[]
-	relatedProducts: Product[]
 }
 
 export interface Category {
 	id: number
 	name: string
+}
+
+export interface RelatedProductDetail {
+	id: number
+	slug: string
+	name: string
+	category_id: number
+	new: boolean
+	price: number
+	description: string
+	features: string
+	product_images: ProductImage[]
 }

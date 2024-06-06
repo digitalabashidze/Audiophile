@@ -1,0 +1,53 @@
+.input {
+	position: relative;
+	width: 50%;
+	display: flex;
+	flex-direction: column;
+	gap: 0.56rem;
+
+	label {
+		font-size: 0.75rem;
+		font-weight: 700;
+		line-height: normal;
+		letter-spacing: -0.01338rem;
+	}
+
+	input {
+		padding: 1.15rem 1.5rem;
+		border: 1px solid #cfcfcf;
+		border-radius: 0.5rem;
+
+		font-size: 0.875rem;
+		font-weight: 700;
+		line-height: normal;
+		letter-spacing: -0.01563rem;
+
+		&::placeholder {
+			opacity: 0.4;
+		}
+
+		&:focus {
+			border-color: var(--color-accent);
+		}
+	}
+
+	.error {
+		position: absolute;
+		right: 0;
+		font-size: 0.75rem;
+		font-weight: 400;
+		line-height: normal;
+		letter-spacing: -0.01338rem;
+		color: var(--color-red);
+	}
+
+	&.has-error {
+		label {
+			color: var(--color-red);
+		}
+
+		input {
+			border-color: var(--color-red);
+		}
+	}
+}

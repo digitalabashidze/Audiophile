@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import Home from './pages/Home/Home'
@@ -16,23 +16,27 @@ const queryClient = new QueryClient({
 	},
 })
 
+const router = createBrowserRouter([
+	{
+		path: '/',
+		element: <AppLayout />,
+		children: [
+			{ index: true, element: <Home /> },
+			{
+				path: '/products/:categoryName',
+				element: <CategoriesPage />,
+			},
+			{ path: '/product/:productId', element: <ProductDetailPage /> },
+			{ path: '/checkout', element: <Checkout /> },
+		],
+	},
+])
+
 function App() {
 	return (
 		<QueryClientProvider client={queryClient}>
 			<ReactQueryDevtools initialIsOpen={false} />
-			<Router>
-				<Routes>
-					<Route path='/' element={<AppLayout />}>
-						<Route index element={<Home />} />
-						<Route
-							path='/products/:categoryName'
-							element={<CategoriesPage />}
-						/>
-						<Route path='/product/:productId' element={<ProductDetailPage />} />
-						<Route path='/checkout' element={<Checkout />} />
-					</Route>
-				</Routes>
-			</Router>
+			<RouterProvider router={router} />
 		</QueryClientProvider>
 	)
 }
