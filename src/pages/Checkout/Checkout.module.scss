@@ -1,7 +1,22 @@
 .checkout {
 	padding: 4.94rem 0 8.81rem;
+	background-color: var(--color-gray);
 
 	.btn {
 		margin-bottom: 2.38rem;
+	}
+
+	.wrapper {
+		display: grid;
+		grid-template-columns: 1fr auto;
+		gap: 1.88rem;
+	}
+
+	@media (max-width: 1220px) {
+		.wrapper {
+			display: flex;
+			flex-direction: column;
+			gap: 2;
+		}
 	}
 }

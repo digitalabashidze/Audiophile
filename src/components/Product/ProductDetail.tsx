@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useMoveBack } from '../../hooks/useMoveBack'
 import { useProductById } from '../../hooks/useProducts'
@@ -5,11 +6,15 @@ import Button from '../Button/Button'
 import QuantityBtn from '../QuantityBtn/QuantityBtn'
 import RelatedProducts from '../RelatedProducts/RelatedProducts'
 import Spinner from '../Spinner/Spinner'
+import { useCart } from '../../Context/CartContext'
 import styles from './ProductDetail.module.scss'
+import { formatCurrency } from '../../utils/helpers'
 
 const ProductDetail = () => {
 	const handleBack = useMoveBack()
 	const { productId } = useParams<{ productId: string }>()
+	const { addToCart } = useCart()
+	const [quantity, setQuantity] = useState(1)
 
 	if (!productId) throw new Error(`product not found`)
 
@@ -53,6 +58,21 @@ const ProductDetail = () => {
 		mobile_url: Img3Mobile,
 	} = product_images[4]
 
+	const handleAddToCart = () => {
+		const newItem = {
+			id: productId,
+			name: name.split(' ').slice(0, -1).join(' '),
+			price,
+			quantity,
+			image: Img,
+		}
+		addToCart(newItem)
+	}
+
+	const handleQuantityChange = (newQuantity: number) => {
+		setQuantity(newQuantity)
+	}
+
 	return (
 		<div className={styles['product-detail']}>
 			<div className={styles['back-btn']}>
@@ -72,10 +92,15 @@ const ProductDetail = () => {
 					)}
 					<h2>{name}</h2>
 					<p>{description}</p>
-					<h6>$ {price}</h6>
+					<h6>{formatCurrency(price)}</h6>
 					<div className={styles['btn-group']}>
-						<QuantityBtn />
-						<Button variant='primary'>ADD TO CART</Button>
+						<QuantityBtn
+							initialQuantity={quantity}
+							onChange={handleQuantityChange}
+						/>
+						<Button variant='primary' onClick={handleAddToCart}>
+							ADD TO CART
+						</Button>
 					</div>
 				</div>
 			</div>

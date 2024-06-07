@@ -6,6 +6,7 @@ import ProductDetailPage from './pages/ProductDetailPage/ProductDetailPage'
 import Checkout from './pages/Checkout/Checkout'
 import AppLayout from './components/AppLayout/AppLayout'
 import CategoriesPage from './pages/CategoriesPage/CategoriesPage'
+import { CartProvider } from './Context/CartContext'
 
 const queryClient = new QueryClient({
 	defaultOptions: {
@@ -34,10 +35,12 @@ const router = createBrowserRouter([
 
 function App() {
 	return (
-		<QueryClientProvider client={queryClient}>
-			<ReactQueryDevtools initialIsOpen={false} />
-			<RouterProvider router={router} />
-		</QueryClientProvider>
+		<CartProvider>
+			<QueryClientProvider client={queryClient}>
+				<ReactQueryDevtools initialIsOpen={false} />
+				<RouterProvider router={router} />
+			</QueryClientProvider>
+		</CartProvider>
 	)
 }
 

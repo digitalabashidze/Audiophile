@@ -11,7 +11,7 @@ import Cart from '../Cart/Cart'
 
 const Header = () => {
 	const [isModalOpen, setIsModalOpen] = useState(false)
-	const [isCartOpen, setIsCartOpen] = useState(true)
+	const [isCartOpen, setIsCartOpen] = useState(false)
 	const isTabletOrMobile = useMediaQuery({ query: '(max-width: 860px)' })
 
 	const closeModal = () => setIsModalOpen(false)
@@ -62,7 +62,7 @@ const Header = () => {
 				isOpen={isCartOpen}
 				onClose={closeCart}
 			>
-				<Cart />
+				<Cart onClose={closeCart} />
 			</Modal>
 
 			<Modal
