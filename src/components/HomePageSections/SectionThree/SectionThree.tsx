@@ -11,7 +11,9 @@ const SectionThree = () => {
 			<div className={styles['section-desc']}>
 				<h4>YX1 EARPHONES</h4>
 				<div>
-					<Button variant='secondary'>See Product</Button>
+					<Button isLink to='/product/1' variant='secondary'>
+						See Product
+					</Button>
 				</div>
 			</div>
 		</div>

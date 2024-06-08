@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { useCart } from '../../Context/CartContext'
 import CheckoutForm from '../../components/CheckoutForm/CheckoutForm'
 import Summary from '../../components/Summary/Summary'
@@ -8,26 +8,44 @@ import styles from './Checkout.module.scss'
 const Checkout = () => {
 	const formRef = useRef<{ submit: () => void }>(null)
 	const { cartItems, clearCart } = useCart()
+	const [paymentMethod, setPaymentMethod] = useState('eMoney')
+	const [isFormSubmitted, setIsFormSubmitted] = useState(false)
 
-	const handlePayClick = () => {
+	const handleClick = () => {
 		if (formRef.current) {
 			formRef.current.submit()
 		}
+	}
+
+	const handlePaymentMethodChange = (method: string) => {
+		setPaymentMethod(method)
+	}
+
+	const handleSuccessSubmit = (success: boolean) => {
+		setIsFormSubmitted(success)
 	}
 
 	return (
 		<div className={styles.checkout}>
 			<div className='container'>
 				<div className={styles['btn']}>
-					<Button variant='link'>Go Back</Button>
+					<Button isLink to='/' variant='link'>
+						Go Back
+					</Button>
 				</div>
 				<div className={styles['wrapper']}>
 					<CheckoutForm
 						ref={formRef}
 						cartItems={cartItems}
 						clearCart={clearCart}
+						onPaymentMethodChange={handlePaymentMethodChange}
+						onSuccessSubmit={handleSuccessSubmit}
 					/>
-					<Summary onPayClick={handlePayClick} />
+					<Summary
+						onClick={handleClick}
+						paymentMethod={paymentMethod}
+						isOpen={isFormSubmitted}
+					/>
 				</div>
 			</div>
 		</div>

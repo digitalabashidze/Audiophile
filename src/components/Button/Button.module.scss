@@ -5,6 +5,7 @@
 	font-weight: 700;
 	line-height: normal;
 	letter-spacing: 0.0625rem;
+	text-align: center;
 }
 
 .primary {
@@ -22,9 +23,20 @@
 	border: 1px solid var(--color-black);
 	transition: all 0.3s ease-in;
 
+	span {
+		color: var(--color-black);
+	}
+
 	&:hover {
 		background-color: var(--color-black);
-		color: var(--color-white);
+
+		span {
+			color: var(--color-white);
+		}
+	}
+
+	&:visited {
+		color: var(--color-black);
 	}
 }
 
@@ -41,8 +53,8 @@
 .icon {
 	display: flex;
 	align-items: center;
-	// gap: 0.83rem;
 	padding: 0;
+
 	span {
 		opacity: 0.5;
 		color: var(--color-black);
@@ -69,11 +81,12 @@
 	font-weight: 400;
 	line-height: 1.5625rem;
 	letter-spacing: normal;
+	color: var(--color-black);
 	opacity: 0.5;
-	transition: all 0.3s ease-in;
+	transition: all 0.2s ease-in;
 
 	&:hover {
-		opacity: 1;
 		color: var(--color-accent);
+		opacity: 1;
 	}
 }

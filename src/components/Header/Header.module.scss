@@ -1,6 +1,4 @@
 .header {
-	// background-color: var(--color-dark);
-
 	.header-wrapper {
 		padding: 2.19rem 0 2.25rem;
 		display: flex;
@@ -23,6 +21,7 @@
 			color: var(--color-white);
 			width: 1.4375rem;
 			height: 1.25rem;
+			cursor: pointer;
 		}
 	}
 

@@ -4,20 +4,21 @@
 		gap: 2.12rem;
 
 		li {
-			font-size: 0.8125rem;
-			font-weight: 700;
-			line-height: 1.5625rem;
-			letter-spacing: 0.125rem;
-			text-transform: uppercase;
-			color: var(--color-white);
-			transition: color 0.3s ease-in-out;
+			a {
+				font-size: 0.8125rem;
+				font-weight: 700;
+				line-height: 1.5625rem;
+				letter-spacing: 0.125rem;
+				text-transform: uppercase;
+				color: var(--color-white);
+				transition: color 0.3s ease-in-out;
+				&.active {
+					color: var(--color-accent);
+				}
 
-			.active {
-				color: var(--color-accent);
-			}
-
-			&:hover {
-				color: var(--color-accent);
+				&:hover {
+					color: var(--color-accent);
+				}
 			}
 		}
 	}

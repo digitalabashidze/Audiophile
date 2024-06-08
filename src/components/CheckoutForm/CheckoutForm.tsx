@@ -15,6 +15,8 @@ interface CartItem {
 interface CheckoutFormProps {
 	cartItems: CartItem[]
 	clearCart: () => void
+	onPaymentMethodChange: (method: string) => void
+	onSuccessSubmit: (success: boolean) => void // Add this prop
 }
 
 interface CheckoutFormValues {
@@ -31,7 +33,10 @@ interface CheckoutFormValues {
 }
 
 const CheckoutForm = forwardRef(
-	({ cartItems, clearCart }: CheckoutFormProps, ref) => {
+	(
+		{ cartItems, onPaymentMethodChange, onSuccessSubmit }: CheckoutFormProps,
+		ref
+	) => {
 		const methods = useForm<CheckoutFormValues>({
 			defaultValues: {
 				name: '',
@@ -52,10 +57,15 @@ const CheckoutForm = forwardRef(
 				...data,
 				cartItems,
 			}
-			console.log(fullData)
 
-			clearCart()
-			methods.reset()
+			try {
+				console.log(fullData)
+				methods.reset()
+				onSuccessSubmit(true)
+			} catch (error) {
+				console.error('Form submission failed:', error)
+				onSuccessSubmit(false)
+			}
 		}
 
 		const [paymentMethod, setPaymentMethod] = useState('eMoney')
@@ -63,6 +73,11 @@ const CheckoutForm = forwardRef(
 		useImperativeHandle(ref, () => ({
 			submit: methods.handleSubmit(onSubmit),
 		}))
+
+		const handlePaymentMethodChange = (method: string) => {
+			setPaymentMethod(method)
+			onPaymentMethodChange(method)
+		}
 
 		return (
 			<div className={styles['checkout-form']}>
@@ -87,7 +102,7 @@ const CheckoutForm = forwardRef(
 										required: 'Email is required',
 										pattern: {
 											value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-											message: 'Invalid email format',
+											message: 'Wrong format',
 										},
 									}}
 								/>
@@ -164,7 +179,7 @@ const CheckoutForm = forwardRef(
 													checked={field.value === 'eMoney'}
 													onChange={e => {
 														field.onChange(e)
-														setPaymentMethod(e.target.value)
+														handlePaymentMethodChange(e.target.value)
 													}}
 												/>
 												<span className={styles['radio-custom']}></span>
@@ -178,7 +193,7 @@ const CheckoutForm = forwardRef(
 													checked={field.value === 'cashOnDelivery'}
 													onChange={e => {
 														field.onChange(e)
-														setPaymentMethod(e.target.value)
+														handlePaymentMethodChange(e.target.value)
 													}}
 												/>
 												<span className={styles['radio-custom']}></span>
@@ -209,13 +224,13 @@ const CheckoutForm = forwardRef(
 											name='eMoneyNumber'
 											label='e-Money Number'
 											placeholder='Enter your e-Money number'
-											rules={{ required: 'e-Money number is required' }}
+											rules={{ required: 'Number is required' }}
 										/>
 										<Input
 											name='eMoneyPin'
 											label='e-Money PIN'
 											placeholder='Enter your e-Money PIN'
-											rules={{ required: 'e-Money PIN is required' }}
+											rules={{ required: 'PIN is required' }}
 										/>
 									</div>
 								</div>

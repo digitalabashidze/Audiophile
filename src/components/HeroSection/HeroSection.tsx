@@ -14,7 +14,9 @@ const HeroSection = () => {
 							made for the passionate music enthusiast.
 						</p>
 					</div>
-					<Button>See Product</Button>
+					<Button isLink={true} to='/product/4'>
+						See Product
+					</Button>
 				</div>
 			</div>
 		</section>

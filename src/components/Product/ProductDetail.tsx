@@ -2,13 +2,14 @@ import { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useMoveBack } from '../../hooks/useMoveBack'
 import { useProductById } from '../../hooks/useProducts'
+import { useCart } from '../../Context/CartContext'
+import { formatCurrency } from '../../utils/helpers'
+import { ExtendedProduct } from '../../services/apiProducts'
 import Button from '../Button/Button'
 import QuantityBtn from '../QuantityBtn/QuantityBtn'
 import RelatedProducts from '../RelatedProducts/RelatedProducts'
 import Spinner from '../Spinner/Spinner'
-import { useCart } from '../../Context/CartContext'
 import styles from './ProductDetail.module.scss'
-import { formatCurrency } from '../../utils/helpers'
 
 const ProductDetail = () => {
 	const handleBack = useMoveBack()
@@ -18,7 +19,7 @@ const ProductDetail = () => {
 
 	if (!productId) throw new Error(`product not found`)
 
-	const { isLoading, data, error } = useProductById(productId)
+	const { isLoading, data } = useProductById(productId)
 
 	if (isLoading) return <Spinner />
 
@@ -32,7 +33,7 @@ const ProductDetail = () => {
 		product_images,
 		product_includes,
 		related_products_details,
-	} = data
+	} = data as ExtendedProduct
 
 	const {
 		desktop_url: Img,
@@ -60,7 +61,7 @@ const ProductDetail = () => {
 
 	const handleAddToCart = () => {
 		const newItem = {
-			id: productId,
+			id: +productId,
 			name: name.split(' ').slice(0, -1).join(' '),
 			price,
 			quantity,

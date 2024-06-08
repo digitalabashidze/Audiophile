@@ -5,9 +5,9 @@ import Nav from '../Nav/Nav'
 import Categories from '../Categories/Categories'
 import Modal from '../Modal/Modal'
 import cartIcon from '@images/shared/desktop/icon-cart.svg'
+import Cart from '../Cart/Cart'
 import hamburgerMenuIcon from '@images/shared/tablet/icon-hamburger.svg'
 import styles from './Header.module.scss'
-import Cart from '../Cart/Cart'
 
 const Header = () => {
 	const [isModalOpen, setIsModalOpen] = useState(false)
@@ -19,7 +19,7 @@ const Header = () => {
 
 	return (
 		<>
-			<header className={styles.header}>
+			<div className={styles.header}>
 				<div className='container'>
 					<div className={styles['header-wrapper']}>
 						<div className={styles['menu-wrapper']}>
@@ -51,31 +51,13 @@ const Header = () => {
 						</div>
 					</div>
 				</div>
-			</header>
+			</div>
 
-			<Modal
-				style={{
-					alignSelf: 'flex-start',
-					right: '10rem',
-					borderRadius: '0.5rem',
-				}}
-				isOpen={isCartOpen}
-				onClose={closeCart}
-			>
+			<Modal position='right' isOpen={isCartOpen} onClose={closeCart}>
 				<Cart onClose={closeCart} />
 			</Modal>
 
-			<Modal
-				style={{
-					alignSelf: 'flex-start',
-					width: '100%',
-					padding: '6.75rem 0 4.19rem',
-					borderBottomLeftRadius: '0.5rem',
-					borderBottomRightRadius: '0.5rem',
-				}}
-				isOpen={isModalOpen}
-				onClose={closeModal}
-			>
+			<Modal position='left' isOpen={isModalOpen} onClose={closeModal}>
 				<div className='container'>
 					<Categories onClose={closeModal} />
 				</div>

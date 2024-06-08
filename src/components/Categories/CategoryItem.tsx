@@ -1,4 +1,3 @@
-import { useNavigate } from 'react-router-dom'
 import { RiArrowRightSLine } from 'react-icons/ri'
 import Button from '../Button/Button'
 import styles from './CategoryItem.module.scss'
@@ -6,23 +5,9 @@ import styles from './CategoryItem.module.scss'
 interface CategoryItemProps {
 	category: string
 	img: string
-	onClose?: () => void
 }
 
-const CategoryItem: React.FC<CategoryItemProps> = ({
-	category,
-	img,
-	onClose,
-}) => {
-	const navigate = useNavigate()
-
-	const handleClick = () => {
-		navigate(`/products/${category}`)
-		if (onClose) {
-			onClose()
-		}
-	}
-
+const CategoryItem = ({ category, img }: CategoryItemProps) => {
 	return (
 		<div className={styles['category-item']}>
 			<div className={styles['image']}>
@@ -30,7 +15,8 @@ const CategoryItem: React.FC<CategoryItemProps> = ({
 			</div>
 			<h6>{category}</h6>
 			<Button
-				onClick={handleClick}
+				isLink
+				to={`/products/${category}`}
 				variant='icon'
 				icon={<RiArrowRightSLine size={20} />}
 			>

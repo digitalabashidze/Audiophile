@@ -19,7 +19,9 @@ const SectionOne = () => {
 						Upgrade to premium speakers that are phenomenally built to deliver
 						truly remarkable sound.
 					</p>
-					<Button variant='dark'>See Product</Button>
+					<Button isLink={true} to='/product/6' variant='dark'>
+						See Product
+					</Button>
 				</div>
 			</div>
 		</div>

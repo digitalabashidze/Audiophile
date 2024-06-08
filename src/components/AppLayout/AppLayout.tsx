@@ -3,9 +3,9 @@ import Header from '../Header/Header'
 import Footer from '../Footer/Footer'
 import HeroSection from '../HeroSection/HeroSection'
 import HeaderCategorySection from '../HeaderCategorySection/HeaderCategorySection'
-import styles from './AppLayout.module.scss'
 import GearSection from '../GearSection/GearSection'
 import Categories from '../Categories/Categories'
+import styles from './AppLayout.module.scss'
 
 const AppLayout = () => {
 	const location = useLocation()

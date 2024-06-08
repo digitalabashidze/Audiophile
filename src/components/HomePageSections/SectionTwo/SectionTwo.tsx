@@ -6,7 +6,9 @@ const SectionTwo = () => {
 		<div className={styles['section-two']}>
 			<div className={styles['section-desc']}>
 				<h4>ZX7 SPEAKER</h4>
-				<Button variant='secondary'>See Product</Button>
+				<Button isLink to='/product/5' variant='secondary'>
+					See Product
+				</Button>
 			</div>
 		</div>
 	)

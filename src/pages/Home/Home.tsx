@@ -7,26 +7,26 @@ import styles from './Home.module.scss'
 const Home = () => {
 	return (
 		<>
-			<div className={styles['categories-section']}>
+			<section className={styles['categories-section']}>
 				<div className='container'>
 					<Categories />
 				</div>
-			</div>
-			<div className={styles['section-one']}>
+			</section>
+			<section className={styles['section-one']}>
 				<div className='container'>
 					<SectionOne />
 				</div>
-			</div>
-			<div className={styles['section-two']}>
+			</section>
+			<section className={styles['section-two']}>
 				<div className='container'>
 					<SectionTwo />
 				</div>
-			</div>
-			<div className={styles['section-three']}>
+			</section>
+			<section className={styles['section-three']}>
 				<div className='container'>
 					<SectionThree />
 				</div>
-			</div>
+			</section>
 		</>
 	)
 }

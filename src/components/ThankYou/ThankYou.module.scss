@@ -1,0 +1,141 @@
+.thank-you {
+	padding: 3rem;
+	width: 33.75rem;
+	display: flex;
+	flex-direction: column;
+	border-radius: 0.5rem;
+	background-color: var(--color-white);
+
+	.icon {
+		margin-bottom: 2rem;
+	}
+
+	.title {
+		margin-bottom: 1.5rem;
+	}
+
+	.text {
+		margin-bottom: 2rem;
+	}
+
+	.products-wrapper {
+		display: flex;
+		margin-bottom: 3rem;
+
+		.items {
+			padding: 1.5rem;
+			width: 60%;
+			display: flex;
+			flex-direction: column;
+			gap: 1rem;
+			background-color: var(--color-gray);
+			border-bottom-left-radius: 0.5rem;
+			border-top-left-radius: 0.5rem;
+
+			.item-wrapper {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+
+				.item {
+					display: flex;
+					align-items: center;
+					gap: 1rem;
+
+					.img {
+						max-width: 4rem;
+						border-radius: 0.5rem;
+						overflow: hidden;
+					}
+
+					.desc {
+						p {
+							font-weight: 700;
+						}
+
+						span {
+							font-size: 0.875rem;
+							font-weight: 700;
+							line-height: 1.5625rem;
+							opacity: 0.5;
+						}
+					}
+				}
+			}
+
+			.view-more-less {
+				padding-top: 0.75rem;
+				border-top: 1px solid rgba(0, 0, 0, 0.08);
+
+				p {
+					font-size: 0.75rem;
+					font-weight: 700;
+					line-height: normal;
+					letter-spacing: -0.01338rem;
+					opacity: 0.5;
+					text-align: center;
+					cursor: pointer;
+				}
+			}
+		}
+
+		.grand-total {
+			padding-left: 2rem;
+			padding-bottom: 2.5rem;
+			width: 40%;
+			display: flex;
+			flex-direction: column;
+			justify-content: end;
+			gap: 0.5rem;
+			border-top-right-radius: 0.5rem;
+			border-bottom-right-radius: 0.5rem;
+			background-color: var(--color-black);
+			color: var(--color-white);
+
+			span {
+				opacity: 0.5;
+			}
+		}
+	}
+
+	@media (max-width: 767px) {
+		padding: 2rem;
+		width: unset;
+
+		.icon {
+			margin-bottom: 1.44rem;
+		}
+
+		.title {
+			margin-bottom: 1rem;
+
+			h3 {
+				font-size: 1.5rem;
+				line-height: 1.75rem;
+				letter-spacing: 0.05356rem;
+			}
+		}
+
+		.text {
+			margin-bottom: 1.5rem;
+		}
+
+		.products-wrapper {
+			flex-direction: column;
+			margin-bottom: 1.44rem;
+
+			.items {
+				width: 100%;
+				border-bottom-left-radius: 0;
+				border-top-right-radius: 0.5rem;
+			}
+
+			.grand-total {
+				width: 100%;
+				padding-bottom: 1.19rem;
+				border-top-right-radius: 0;
+				border-bottom-left-radius: 0.5rem;
+			}
+		}
+	}
+}

@@ -40,7 +40,9 @@ const Input: React.FC<InputProps> = ({
 	const errorMessage = errors[name]?.message as string
 
 	return (
-		<div className={`${styles.input} ${errorMessage ? styles.hasError : ''}`}>
+		<div
+			className={`${styles.input} ${errorMessage ? styles['has-error'] : ''}`}
+		>
 			<label htmlFor={name}>{label}</label>
 			<Controller
 				name={name}

@@ -1,6 +1,8 @@
 .cart {
 	padding: 2rem;
 	width: 23.5625rem;
+	background-color: var(--color-white);
+	border-radius: 0.5rem;
 
 	.cart-header {
 		margin-bottom: 2rem;
@@ -61,5 +63,15 @@
 				text-transform: uppercase;
 			}
 		}
+	}
+
+	@media (max-width: 500px) {
+		padding: 1.5rem;
+		width: 20.4375rem;
+	}
+
+	@media (max-width: 374px) {
+		padding: 1.5rem;
+		width: 18.4375rem;
 	}
 }

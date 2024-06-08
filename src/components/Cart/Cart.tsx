@@ -36,14 +36,21 @@ const Cart = ({ onClose }: CartProps) => {
 		onClose()
 	}
 
+	const handleAddProduct = () => {
+		navigate('/')
+		onClose()
+	}
+
 	return (
 		<div className={styles['cart-modal']}>
 			<div className={styles['cart']}>
 				<div className={styles['cart-header']}>
 					<h6>Cart ({cartItems.length})</h6>
-					<Button variant='link' onClick={clearCart}>
-						Remove all
-					</Button>
+					{cartItems.length > 0 && (
+						<Button variant='link' onClick={clearCart}>
+							Remove all
+						</Button>
+					)}
 				</div>
 				<div className={styles['cart-body']}>
 					{cartItems.map(item => (
@@ -71,10 +78,21 @@ const Cart = ({ onClose }: CartProps) => {
 				</div>
 				<div className={styles['cart-footer']}>
 					<div className={styles['total']}>
-						<p>Total</p>
-						<h6>{formatCurrency(totalPrice)}</h6>
+						{cartItems.length > 0 ? (
+							<>
+								<p>Total</p>
+								<h6>{formatCurrency(totalPrice)}</h6>
+							</>
+						) : (
+							<p>Cart is empty</p>
+						)}
 					</div>
-					<Button onClick={() => handleCheckout()}>Checkout</Button>
+
+					{cartItems.length > 0 ? (
+						<Button onClick={() => handleCheckout()}>Checkout</Button>
+					) : (
+						<Button onClick={() => handleAddProduct()}>add product </Button>
+					)}
 				</div>
 			</div>
 		</div>
