@@ -9,6 +9,7 @@ import Button from '../Button/Button'
 import QuantityBtn from '../QuantityBtn/QuantityBtn'
 import RelatedProducts from '../RelatedProducts/RelatedProducts'
 import Spinner from '../Spinner/Spinner'
+import Empty from '../Empty/Empty'
 import styles from './ProductDetail.module.scss'
 
 const ProductDetail = () => {
@@ -19,9 +20,11 @@ const ProductDetail = () => {
 
 	if (!productId) throw new Error(`product not found`)
 
-	const { isLoading, data } = useProductById(productId)
+	const { isLoading, data, error } = useProductById(productId)
 
 	if (isLoading) return <Spinner />
+
+	if (error) return <Empty />
 
 	const {
 		name,

@@ -3,9 +3,9 @@ import { useCart } from '../../Context/CartContext'
 import { SHIPPING_COST, VAT_PERCENT } from '../../utils/constants'
 import { formatCurrency } from '../../utils/helpers'
 import Button from '../Button/Button'
-import styles from './Summary.module.scss'
 import Modal from '../Modal/Modal'
 import ThankYou from '../ThankYou/ThankYou'
+import styles from './Summary.module.scss'
 
 interface SummaryProps {
 	onClick: () => void
@@ -15,7 +15,7 @@ interface SummaryProps {
 
 const Summary = ({ onClick, paymentMethod, isOpen }: SummaryProps) => {
 	const { cartItems } = useCart()
-	const [isThankYouOpen, setThankYouOpen] = useState(true)
+	const [isThankYouOpen, setThankYouOpen] = useState(false)
 
 	useEffect(() => {
 		if (isOpen) {

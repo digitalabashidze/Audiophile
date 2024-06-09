@@ -1,8 +1,8 @@
-import styles from './Categories.module.scss'
 import CategoryItem from './CategoryItem'
 import EarPhoneImg from '@images/shared/desktop/category-earphones.png'
 import HeadPhoneImg from '@images/shared/desktop/category-headphones.png'
 import SpeakerImg from '@images/shared/desktop/category-speakers.png'
+import styles from './Categories.module.scss'
 
 interface Category {
 	category: string

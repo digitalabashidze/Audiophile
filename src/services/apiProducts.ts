@@ -5,35 +5,6 @@ export interface ExtendedProduct extends Product {
 	related_products_details: RelatedProductDetail[]
 }
 
-export const getProducts = async () => {
-	const { data, error } = await supabase.from('products').select(` id,
-      slug,
-      name,
-      category_id,
-      new,
-      price,
-      description,
-      features,
-      product_images (
-        id,
-        type,
-        mobile_url,
-        tablet_url,
-        desktop_url
-      ),
-      product_includes (
-        id,
-        quantity,
-        item
-      )`)
-
-	if (error) {
-		throw new Error(error.message)
-	}
-
-	return data
-}
-
 export const getProductsByCategoryName = async (
 	categoryName: string
 ): Promise<Product[]> => {
@@ -44,7 +15,8 @@ export const getProductsByCategoryName = async (
 		.single()
 
 	if (categoryError) {
-		throw new Error(categoryError.message)
+		console.error(categoryError.message)
+		throw new Error('Category not found')
 	}
 
 	const categoryId = categoryData?.id
@@ -87,7 +59,7 @@ export const getProductsByCategoryName = async (
 
 	if (productsError) {
 		console.error('Error fetching products:', productsError)
-		throw new Error(productsError.message)
+		throw new Error('Product not found')
 	}
 
 	return data as Product[]
@@ -124,7 +96,7 @@ export const getProductsById = async (
 
 	if (productError) {
 		console.error('Error fetching product:', productError)
-		throw new Error(productError.message)
+		throw new Error('Product not found')
 	}
 
 	if (!productData) {
@@ -156,7 +128,7 @@ export const getProductsById = async (
 
 	if (relatedProductsError) {
 		console.error('Error fetching related products:', relatedProductsError)
-		throw new Error(relatedProductsError.message)
+		throw new Error('Related products not found')
 	}
 
 	if (relatedProductsData) {

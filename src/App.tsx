@@ -7,6 +7,7 @@ import ProductDetailPage from './pages/ProductDetailPage/ProductDetailPage'
 import Checkout from './pages/Checkout/Checkout'
 import AppLayout from './components/AppLayout/AppLayout'
 import CategoriesPage from './pages/CategoriesPage/CategoriesPage'
+import ErrorPage from './pages/404/404'
 
 const queryClient = new QueryClient({
 	defaultOptions: {
@@ -31,6 +32,7 @@ const router = createBrowserRouter([
 			{ path: '/checkout', element: <Checkout /> },
 		],
 	},
+	{ path: '*', element: <ErrorPage /> },
 ])
 
 function App() {

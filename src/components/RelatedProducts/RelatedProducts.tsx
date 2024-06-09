@@ -1,10 +1,7 @@
+import { useNavigate } from 'react-router-dom'
+import { RelatedProductDetail } from '../../types/generalTypes'
 import Button from '../Button/Button'
 import styles from './RelatedProducts.module.scss'
-import Img from '@images/product-xx99-mark-one-headphones/desktop/image-product.jpg'
-import ImgTablet from '@images/product-xx99-mark-one-headphones/tablet/image-product.jpg'
-import ImgMobile from '@images/product-xx99-mark-one-headphones/tablet/image-category-page-preview.jpg'
-import { RelatedProductDetail } from '../../types/generalTypes'
-import { useNavigate } from 'react-router-dom'
 
 interface RelatedProductsProps {
 	relatedProducts: RelatedProductDetail[]

@@ -1,4 +1,4 @@
-import React, { InputHTMLAttributes } from 'react'
+import { InputHTMLAttributes } from 'react'
 import { useFormContext, Controller } from 'react-hook-form'
 import styles from './Input.module.scss'
 
@@ -24,14 +24,14 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 	}
 }
 
-const Input: React.FC<InputProps> = ({
+const Input = ({
 	name,
 	label,
 	type = 'text',
 	rules,
 	placeholder,
 	...rest
-}) => {
+}: InputProps) => {
 	const {
 		control,
 		formState: { errors },

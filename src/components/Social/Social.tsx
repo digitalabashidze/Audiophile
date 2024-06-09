@@ -1,6 +1,6 @@
-import styles from './Social.module.scss'
 import { ImFacebook2 } from 'react-icons/im'
 import { FaTwitter, FaInstagram } from 'react-icons/fa'
+import styles from './Social.module.scss'
 
 const Social = () => {
 	return (
