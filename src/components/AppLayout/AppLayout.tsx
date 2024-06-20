@@ -11,6 +11,7 @@ const AppLayout = () => {
 	const location = useLocation()
 	const isHomePage = location.pathname === '/'
 	const isCheckout = location.pathname === '/checkout'
+	const isProfile = location.pathname === '/profile'
 	const categories: { [key: string]: string } = {
 		'/products/headphones': 'Headphones',
 		'/products/speakers': 'Speakers',
@@ -30,12 +31,12 @@ const AppLayout = () => {
 				<Outlet />
 				<ScrollRestoration />
 			</main>
-			{!isHomePage && !isCheckout && (
+			{!isHomePage && !isCheckout && !isProfile && (
 				<div className={`container ${styles['padding']}`}>
 					<Categories />
 				</div>
 			)}
-			{!isCheckout && <GearSection />}
+			{!isCheckout && !isProfile && <GearSection />}
 			<Footer />
 		</div>
 	)

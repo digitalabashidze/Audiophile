@@ -5,7 +5,7 @@ import styles from './Input.module.scss'
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 	name: string
 	label: string
-	placeholder: string
+	placeholder?: string
 	type?: string
 	rules?: {
 		required?: string | boolean
@@ -29,7 +29,7 @@ const Input = ({
 	label,
 	type = 'text',
 	rules,
-	placeholder,
+	placeholder = '',
 	...rest
 }: InputProps) => {
 	const {

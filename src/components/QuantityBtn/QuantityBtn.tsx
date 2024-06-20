@@ -4,12 +4,14 @@ import styles from './QuantityBtn.module.scss'
 interface QuantityBtnProps {
 	initialQuantity?: number
 	size?: 'normal' | 'small'
+	minValue?: number
 	onChange?: (newQuantity: number) => void
 }
 
 const QuantityBtn = ({
 	initialQuantity = 1,
 	size = 'normal',
+	minValue = 0,
 	onChange,
 }: QuantityBtnProps) => {
 	const [quantity, setQuantity] = useState(initialQuantity)
@@ -23,7 +25,7 @@ const QuantityBtn = ({
 	}
 
 	const decreaseQuantity = () => {
-		const newQuantity = quantity > 1 ? quantity - 1 : 0
+		const newQuantity = quantity > 1 ? quantity - 1 : minValue
 		setQuantity(newQuantity)
 		if (onChange) {
 			onChange(newQuantity)

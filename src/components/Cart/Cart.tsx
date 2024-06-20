@@ -10,7 +10,7 @@ interface CartProps {
 }
 
 const Cart = ({ onClose }: CartProps) => {
-	const { cartItems, removeFromCart, clearCart, updateCartQuantity } = useCart()
+	const { cartItems, updateCart, clearCart } = useCart()
 
 	const navigate = useNavigate()
 
@@ -24,10 +24,9 @@ const Cart = ({ onClose }: CartProps) => {
 	const totalPrice = calculateTotal()
 
 	const handleQuantityChange = (id: number, newQuantity: number) => {
-		if (newQuantity < 1) {
-			removeFromCart(id)
-		} else {
-			updateCartQuantity(id, newQuantity)
+		const item = cartItems.find(cartItem => cartItem.id === id)
+		if (item) {
+			updateCart({ ...item, quantity: newQuantity })
 		}
 	}
 

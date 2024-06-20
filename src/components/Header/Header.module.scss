@@ -17,11 +17,30 @@
 			}
 		}
 
-		.cart {
-			color: var(--color-white);
-			width: 1.4375rem;
-			height: 1.25rem;
-			cursor: pointer;
+		.icons-wrapper {
+			display: flex;
+			align-items: center;
+			gap: 1rem;
+
+			.cart {
+				color: var(--color-white);
+				width: 1.4375rem;
+				height: 1.25rem;
+				cursor: pointer;
+			}
+
+			.user {
+				display: flex;
+				color: var(--color-white);
+				cursor: pointer;
+				transition: color 0.3s ease-in;
+				svg {
+					width: 1.4rem;
+				}
+				&:hover {
+					color: var(--color-accent);
+				}
+			}
 		}
 	}
 

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useMoveBack } from '../../hooks/useMoveBack'
 import { useProductById } from '../../hooks/useProducts'
@@ -15,10 +15,25 @@ import styles from './ProductDetail.module.scss'
 const ProductDetail = () => {
 	const handleBack = useMoveBack()
 	const { productId } = useParams<{ productId: string }>()
-	const { addToCart } = useCart()
-	const [quantity, setQuantity] = useState(1)
+	const { updateCart, cartItems } = useCart()
 
 	if (!productId) throw new Error(`product not found`)
+
+	const item = cartItems.find(item => item.id === +productId)
+
+	const [quantity, setQuantity] = useState(() => {
+		if (item) return item.quantity
+		return 1
+	})
+
+	useEffect(() => {
+		const item = cartItems.find(item => item.id === +productId)
+		if (item) {
+			setQuantity(item.quantity)
+		} else {
+			setQuantity(1)
+		}
+	}, [cartItems, productId])
 
 	const { isLoading, data, error } = useProductById(productId)
 
@@ -70,11 +85,19 @@ const ProductDetail = () => {
 			quantity,
 			image: Img,
 		}
-		addToCart(newItem)
+		updateCart(newItem)
 	}
 
 	const handleQuantityChange = (newQuantity: number) => {
 		setQuantity(newQuantity)
+		const updatedItem = {
+			id: +productId,
+			name: name.split(' ').slice(0, -1).join(' '),
+			price,
+			quantity: newQuantity,
+			image: Img,
+		}
+		updateCart(updatedItem)
 	}
 
 	return (
@@ -99,6 +122,7 @@ const ProductDetail = () => {
 					<h6>{formatCurrency(price)}</h6>
 					<div className={styles['btn-group']}>
 						<QuantityBtn
+							minValue={1}
 							initialQuantity={quantity}
 							onChange={handleQuantityChange}
 						/>

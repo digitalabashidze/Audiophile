@@ -1,17 +1,20 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { useMediaQuery } from 'react-responsive'
+import { FaRegUser } from 'react-icons/fa'
 import Logo from '../Logo/Logo'
 import Nav from '../Nav/Nav'
 import Categories from '../Categories/Categories'
 import Modal from '../Modal/Modal'
-import cartIcon from '@images/shared/desktop/icon-cart.svg'
 import Cart from '../Cart/Cart'
 import hamburgerMenuIcon from '@images/shared/tablet/icon-hamburger.svg'
+import CartIcon from '../CartIcon/CartIcon'
 import styles from './Header.module.scss'
 
 const Header = () => {
 	const [isModalOpen, setIsModalOpen] = useState(false)
 	const [isCartOpen, setIsCartOpen] = useState(false)
+
 	const isTabletOrMobile = useMediaQuery({ query: '(max-width: 860px)' })
 
 	const closeModal = () => setIsModalOpen(false)
@@ -43,11 +46,17 @@ const Header = () => {
 							</div>
 						)}
 
-						<div
-							onClick={() => setIsCartOpen(!isCartOpen)}
-							className={styles.cart}
-						>
-							<img src={cartIcon} alt='cart icon' />
+						<div className={styles['icons-wrapper']}>
+							<Link to='/profile' className={styles.user}>
+								<FaRegUser />
+							</Link>
+
+							<div
+								onClick={() => setIsCartOpen(!isCartOpen)}
+								className={styles.cart}
+							>
+								<CartIcon />
+							</div>
 						</div>
 					</div>
 				</div>

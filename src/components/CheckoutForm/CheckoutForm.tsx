@@ -1,6 +1,8 @@
 import { useState, forwardRef, useImperativeHandle } from 'react'
 import { FormProvider, useForm, Controller } from 'react-hook-form'
+import { useUser } from '../../hooks/useAuth'
 import Input from '../Input/Input'
+import Spinner from '../Spinner/Spinner'
 import Icon from '@images/checkout/icon-cash-on-delivery.svg'
 import styles from './CheckoutForm.module.scss'
 
@@ -16,7 +18,7 @@ interface CheckoutFormProps {
 	cartItems: CartItem[]
 	clearCart: () => void
 	onPaymentMethodChange: (method: string) => void
-	onSuccessSubmit: (success: boolean) => void // Add this prop
+	onSuccessSubmit: (success: boolean) => void
 }
 
 interface CheckoutFormValues {
@@ -37,15 +39,17 @@ const CheckoutForm = forwardRef(
 		{ cartItems, onPaymentMethodChange, onSuccessSubmit }: CheckoutFormProps,
 		ref
 	) => {
+		const { isLoading, user: userProfile } = useUser()
+
 		const methods = useForm<CheckoutFormValues>({
 			defaultValues: {
-				name: '',
-				email: '',
-				phoneNumber: '',
-				address: '',
-				zipCode: '',
-				city: '',
-				country: '',
+				name: userProfile?.user_metadata.full_name || '',
+				email: userProfile?.user_metadata.email || '',
+				phoneNumber: userProfile?.user_metadata.phone_number || '',
+				address: userProfile?.user_metadata.address || '',
+				zipCode: userProfile?.user_metadata.zip_code || '',
+				city: userProfile?.user_metadata.city || '',
+				country: userProfile?.user_metadata.country || '',
 				paymentMethod: 'eMoney',
 				eMoneyNumber: '',
 				eMoneyPin: '',
@@ -78,6 +82,8 @@ const CheckoutForm = forwardRef(
 			setPaymentMethod(method)
 			onPaymentMethodChange(method)
 		}
+
+		if (isLoading) return <Spinner />
 
 		return (
 			<div className={styles['checkout-form']}>
