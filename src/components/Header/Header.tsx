@@ -16,7 +16,7 @@ import styles from './Header.module.scss'
 const Header = () => {
 	const [isModalOpen, setIsModalOpen] = useState(false)
 	const [isCartOpen, setIsCartOpen] = useState(false)
-	const { isAuthenticated, isLoading } = useUser()
+	const { isAuthenticated } = useUser()
 
 	const isTabletOrMobile = useMediaQuery({ query: '(max-width: 860px)' })
 

@@ -4,14 +4,10 @@ import Input from '../Input/Input'
 import Button from '../Button/Button'
 import Logo from '../Logo/Logo'
 import styles from './Login.module.scss'
-
-interface LoginFormInputs {
-	email: string
-	password: string
-}
+import { LoginProps } from '../../services/apiAuth'
 
 const Login = () => {
-	const methods = useForm<LoginFormInputs>({
+	const methods = useForm<LoginProps>({
 		defaultValues: {
 			email: '',
 			password: '',
@@ -23,7 +19,7 @@ const Login = () => {
 	} = methods
 	const { login, isLoading } = useLogin()
 
-	const onSubmit: SubmitHandler<LoginFormInputs> = data => {
+	const onSubmit: SubmitHandler<LoginProps> = data => {
 		login(data)
 	}
 

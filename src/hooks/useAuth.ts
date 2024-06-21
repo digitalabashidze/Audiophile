@@ -6,26 +6,18 @@ import {
 	signUp as signUpApi,
 	updateCurrentUser,
 	logout as logoutApi,
+	LoginProps,
+	SignUpProps,
+	UpdateCurrentUserProps,
 } from '../services/apiAuth'
 import toast from 'react-hot-toast'
-
-interface LoginArgs {
-	email: string
-	password: string
-}
-
-interface SignUpArgs {
-	email: string
-	password: string
-	username: string
-}
 
 export function useLogin() {
 	const navigate = useNavigate()
 	const queryClient = useQueryClient()
 
 	const { mutate: login, status } = useMutation({
-		mutationFn: (args: LoginArgs) => loginApi(args),
+		mutationFn: (args: LoginProps) => loginApi(args),
 		onSuccess: data => {
 			queryClient.setQueryData(['user'], data.user)
 
@@ -59,7 +51,7 @@ export function useSignUp() {
 		status,
 		error,
 	} = useMutation({
-		mutationFn: (args: SignUpArgs) => signUpApi(args),
+		mutationFn: (args: SignUpProps) => signUpApi(args),
 		onSuccess: () => {
 			console.log('Sign-up successful, navigating to login...')
 			toast.success(`Account successfully created!`)
@@ -74,23 +66,12 @@ export function useSignUp() {
 	return { signUp, isLoading: status === 'pending', error }
 }
 
-interface UpdateUserProps {
-	username: string
-	full_name: string
-	phone_number: string
-	address: string
-	zip_code: string
-	city: string
-	country: string
-	avatar: FileList | null
-}
-
 export function useUpdateUser() {
 	const navigate = useNavigate()
 	const queryClient = useQueryClient()
 
 	const { mutate: updateUserMutation, status } = useMutation({
-		mutationFn: (args: UpdateUserProps) => updateCurrentUser(args),
+		mutationFn: (args: UpdateCurrentUserProps) => updateCurrentUser(args),
 		onSuccess: () => {
 			toast.success('Profile updated successfully!')
 			queryClient.invalidateQueries({ queryKey: ['user'] })

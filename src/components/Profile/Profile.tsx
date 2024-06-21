@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useForm, FormProvider, SubmitHandler } from 'react-hook-form'
 import { useLogout, useUpdateUser, useUser } from '../../hooks/useAuth'
+import { UpdateCurrentUserProps } from '../../services/apiAuth'
 import Input from '../Input/Input'
 import Button from '../Button/Button'
 import Spinner from '../Spinner/Spinner'
@@ -8,24 +9,13 @@ import Empty from '../Empty/Empty'
 import Avatar from '@images/default-user.jpg'
 import styles from './Profile.module.scss'
 
-interface ProfileFormInputs {
-	username: string
-	full_name: string
-	phone_number: string
-	address: string
-	zip_code: string
-	city: string
-	country: string
-	avatar: FileList | null
-}
-
 const Profile = () => {
 	const [editMode, setEditMode] = useState(false)
 	const { isLoading, user: userProfile } = useUser()
 	const { updateUser, isLoading: isUpdating } = useUpdateUser()
 	const { logout, isLoading: isLoginout } = useLogout()
 
-	const methods = useForm<ProfileFormInputs>({
+	const methods = useForm<UpdateCurrentUserProps>({
 		defaultValues: {
 			username: userProfile?.user_metadata.username || '',
 			full_name: userProfile?.user_metadata.full_name || '',
@@ -55,7 +45,7 @@ const Profile = () => {
 		}
 	}, [userProfile, reset])
 
-	const onSubmit: SubmitHandler<ProfileFormInputs> = data => {
+	const onSubmit: SubmitHandler<UpdateCurrentUserProps> = data => {
 		if (userProfile) {
 			updateUser({ ...data })
 			setEditMode(false)
@@ -99,7 +89,7 @@ const Profile = () => {
 								rules={{
 									required: 'Phone Number is required',
 									pattern: {
-										value: /^\d{10}$/,
+										value: /^\+?[1-9]\d{1,14}$/,
 										message: 'Invalid phone number',
 									},
 								}}

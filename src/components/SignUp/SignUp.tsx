@@ -1,15 +1,13 @@
 import { useForm, FormProvider, SubmitHandler } from 'react-hook-form'
 import { useSignUp } from '../../hooks/useAuth'
+import { SignUpProps } from '../../services/apiAuth'
 import Input from '../Input/Input'
 import Button from '../Button/Button'
 import Logo from '../Logo/Logo'
 import styles from './SignUp.module.scss'
 
-interface SignUpFormInputs {
-	email: string
-	password: string
+interface SignUpFormInputs extends SignUpProps {
 	repeat_password: string
-	username: string
 }
 
 const SignUpForm = () => {
@@ -73,7 +71,7 @@ const SignUpForm = () => {
 							placeholder='Repeat your password'
 							rules={{
 								required: 'Repeat Pass is required',
-								validate: value =>
+								validate: (value: string) =>
 									value === password || 'The passwords do not match',
 							}}
 						/>

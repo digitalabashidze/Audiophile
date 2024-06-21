@@ -1,6 +1,6 @@
 import { supabase, supabaseStorageUrl } from './supabase'
 
-interface LoginProps {
+export interface LoginProps {
 	email: string
 	password: string
 }
@@ -16,7 +16,7 @@ export async function login({ email, password }: LoginProps) {
 	return data
 }
 
-interface SignUpProps {
+export interface SignUpProps {
 	email: string
 	password: string
 	username: string
@@ -57,7 +57,7 @@ export async function getCurrentUser() {
 	return data.user
 }
 
-interface UpdateCurrentUserProps {
+export interface UpdateCurrentUserProps {
 	username: string
 	full_name: string
 	phone_number: string
