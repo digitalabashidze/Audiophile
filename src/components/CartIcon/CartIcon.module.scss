@@ -1,8 +1,25 @@
-.cart-icon {
-	fill: var(--color-white);
-	transition: fill 0.3s ease-in;
+.cart-icon-container {
+	position: relative;
 
-	&:hover {
-		fill: var(--color-accent);
+	span {
+		position: absolute;
+		width: 1.2rem;
+		height: 1.2rem;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		top: 50%;
+		left: 63%;
+		transform: translate(-50%, -123%);
+		background-color: var(--color-accent);
+		border-radius: 50%;
+	}
+	.cart-icon {
+		fill: var(--color-white);
+		transition: fill 0.3s ease-in;
+
+		&:hover {
+			fill: var(--color-accent);
+		}
 	}
 }
