@@ -1,7 +1,9 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useMediaQuery } from 'react-responsive'
+import { useUser } from '../../hooks/useAuth'
 import { FaRegUser } from 'react-icons/fa'
+import { SlLogin } from 'react-icons/sl'
 import Logo from '../Logo/Logo'
 import Nav from '../Nav/Nav'
 import Categories from '../Categories/Categories'
@@ -14,6 +16,7 @@ import styles from './Header.module.scss'
 const Header = () => {
 	const [isModalOpen, setIsModalOpen] = useState(false)
 	const [isCartOpen, setIsCartOpen] = useState(false)
+	const { isAuthenticated, isLoading } = useUser()
 
 	const isTabletOrMobile = useMediaQuery({ query: '(max-width: 860px)' })
 
@@ -48,7 +51,7 @@ const Header = () => {
 
 						<div className={styles['icons-wrapper']}>
 							<Link to='/profile' className={styles.user}>
-								<FaRegUser />
+								{!isAuthenticated ? <SlLogin /> : <FaRegUser />}
 							</Link>
 
 							<div
@@ -63,7 +66,12 @@ const Header = () => {
 			</div>
 
 			<Modal position='right' isOpen={isCartOpen} onClose={closeCart}>
-				<Cart onClose={closeCart} />
+				<div
+					className='container'
+					style={{ display: 'flex', justifyContent: 'right' }}
+				>
+					<Cart onClose={closeCart} />
+				</div>
 			</Modal>
 
 			<Modal position='left' isOpen={isModalOpen} onClose={closeModal}>

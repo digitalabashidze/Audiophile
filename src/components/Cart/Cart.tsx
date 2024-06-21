@@ -41,58 +41,56 @@ const Cart = ({ onClose }: CartProps) => {
 	}
 
 	return (
-		<div className={styles['cart-modal']}>
-			<div className={styles['cart']}>
-				<div className={styles['cart-header']}>
-					<h6>Cart ({cartItems.length})</h6>
-					{cartItems.length > 0 && (
-						<Button variant='link' onClick={clearCart}>
-							Remove all
-						</Button>
-					)}
-				</div>
-				<div className={styles['cart-body']}>
-					{cartItems.map(item => (
-						<div className={styles['item-wrapper']} key={item.id}>
-							<div className={styles['item']}>
-								<div className={styles['img']}>
-									<img src={item.image} alt={item.name} />
-								</div>
-								<div className={styles['desc']}>
-									<p>{item.name}</p>
-									<span>{formatCurrency(item.price)}</span>
-								</div>
+		<div className={styles['cart']}>
+			<div className={styles['cart-header']}>
+				<h6>Cart ({cartItems.length})</h6>
+				{cartItems.length > 0 && (
+					<Button variant='link' onClick={clearCart}>
+						Remove all
+					</Button>
+				)}
+			</div>
+			<div className={styles['cart-body']}>
+				{cartItems.map(item => (
+					<div className={styles['item-wrapper']} key={item.id}>
+						<div className={styles['item']}>
+							<div className={styles['img']}>
+								<img src={item.image} alt={item.name} />
 							</div>
-							<div className='btn'>
-								<QuantityBtn
-									initialQuantity={item.quantity}
-									size='small'
-									onChange={newQuantity =>
-										handleQuantityChange(item.id, newQuantity)
-									}
-								/>
+							<div className={styles['desc']}>
+								<p>{item.name}</p>
+								<span>{formatCurrency(item.price)}</span>
 							</div>
 						</div>
-					))}
-				</div>
-				<div className={styles['cart-footer']}>
-					<div className={styles['total']}>
-						{cartItems.length > 0 ? (
-							<>
-								<p>Total</p>
-								<h6>{formatCurrency(totalPrice)}</h6>
-							</>
-						) : (
-							<p>Cart is empty</p>
-						)}
+						<div className='btn'>
+							<QuantityBtn
+								initialQuantity={item.quantity}
+								size='small'
+								onChange={newQuantity =>
+									handleQuantityChange(item.id, newQuantity)
+								}
+							/>
+						</div>
 					</div>
-
+				))}
+			</div>
+			<div className={styles['cart-footer']}>
+				<div className={styles['total']}>
 					{cartItems.length > 0 ? (
-						<Button onClick={() => handleCheckout()}>Checkout</Button>
+						<>
+							<p>Total</p>
+							<h6>{formatCurrency(totalPrice)}</h6>
+						</>
 					) : (
-						<Button onClick={() => handleAddProduct()}>add product </Button>
+						<p>Cart is empty</p>
 					)}
 				</div>
+
+				{cartItems.length > 0 ? (
+					<Button onClick={() => handleCheckout()}>Checkout</Button>
+				) : (
+					<Button onClick={() => handleAddProduct()}>add product </Button>
+				)}
 			</div>
 		</div>
 	)

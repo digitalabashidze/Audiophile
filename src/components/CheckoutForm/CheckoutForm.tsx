@@ -44,7 +44,7 @@ const CheckoutForm = forwardRef(
 		const methods = useForm<CheckoutFormValues>({
 			defaultValues: {
 				name: userProfile?.user_metadata.full_name || '',
-				email: userProfile?.user_metadata.email || '',
+				email: userProfile?.email || '',
 				phoneNumber: userProfile?.user_metadata.phone_number || '',
 				address: userProfile?.user_metadata.address || '',
 				zipCode: userProfile?.user_metadata.zip_code || '',

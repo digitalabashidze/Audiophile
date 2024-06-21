@@ -21,19 +21,15 @@ const ProductDetail = () => {
 
 	const item = cartItems.find(item => item.id === +productId)
 
-	const [quantity, setQuantity] = useState(() => {
-		if (item) return item.quantity
-		return 1
-	})
+	const [quantity, setQuantity] = useState(() => (item ? item.quantity : 1))
 
 	useEffect(() => {
-		const item = cartItems.find(item => item.id === +productId)
 		if (item) {
 			setQuantity(item.quantity)
 		} else {
 			setQuantity(1)
 		}
-	}, [cartItems, productId])
+	}, [item])
 
 	const { isLoading, data, error } = useProductById(productId)
 
@@ -90,14 +86,6 @@ const ProductDetail = () => {
 
 	const handleQuantityChange = (newQuantity: number) => {
 		setQuantity(newQuantity)
-		const updatedItem = {
-			id: +productId,
-			name: name.split(' ').slice(0, -1).join(' '),
-			price,
-			quantity: newQuantity,
-			image: Img,
-		}
-		updateCart(updatedItem)
 	}
 
 	return (
