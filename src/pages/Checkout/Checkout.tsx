@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react'
 import { useCart } from '../../Context/CartContext'
+import { useMoveBack } from '../../hooks/useMoveBack'
 import CheckoutForm from '../../components/CheckoutForm/CheckoutForm'
 import Summary from '../../components/Summary/Summary'
 import Button from '../../components/Button/Button'
@@ -8,6 +9,7 @@ import styles from './Checkout.module.scss'
 const Checkout = () => {
 	const formRef = useRef<{ submit: () => void }>(null)
 	const { cartItems, clearCart } = useCart()
+	const handleBack = useMoveBack()
 	const [paymentMethod, setPaymentMethod] = useState('eMoney')
 	const [isFormSubmitted, setIsFormSubmitted] = useState(false)
 
@@ -29,7 +31,7 @@ const Checkout = () => {
 		<div className={styles.checkout}>
 			<div className='container'>
 				<div className={styles['btn']}>
-					<Button isLink to='/' variant='link'>
+					<Button onClick={handleBack} variant='link'>
 						Go Back
 					</Button>
 				</div>
