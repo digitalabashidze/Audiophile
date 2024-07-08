@@ -5,6 +5,14 @@
 	.footer-wrapper {
 		position: relative;
 
+		.dec-line {
+			position: absolute;
+			top: -4.66rem;
+			width: 6.3125rem;
+			height: 0.25rem;
+			background-color: var(--color-accent);
+		}
+
 		.footer-top {
 			display: flex;
 			align-items: center;
@@ -71,6 +79,13 @@
 			@media (max-width: 576px) {
 				flex-direction: column;
 				gap: 3rem;
+			}
+		}
+		@media (max-width: 576px) {
+			.dec-line {
+				top: -4.55rem;
+				left: 50%;
+				transform: translate(-50%, -50%);
 			}
 		}
 	}

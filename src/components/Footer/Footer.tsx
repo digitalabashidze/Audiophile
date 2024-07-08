@@ -8,6 +8,7 @@ const Footer = () => {
 		<footer className={styles.footer}>
 			<div className='container'>
 				<div className={styles['footer-wrapper']}>
+					<div className={styles['dec-line']}></div>
 					<div className={styles['footer-top']}>
 						<div className={styles['logo']}>
 							<Logo />
