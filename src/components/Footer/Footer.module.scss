@@ -7,7 +7,7 @@
 
 		.dec-line {
 			position: absolute;
-			top: -4.66rem;
+			top: -4.7rem;
 			width: 6.3125rem;
 			height: 0.25rem;
 			background-color: var(--color-accent);
@@ -83,7 +83,7 @@
 		}
 		@media (max-width: 576px) {
 			.dec-line {
-				top: -4.55rem;
+				top: -4.57rem;
 				left: 50%;
 				transform: translate(-50%, -50%);
 			}

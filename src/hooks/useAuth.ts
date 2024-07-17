@@ -22,11 +22,10 @@ export function useLogin() {
 			queryClient.setQueryData(['user'], data.user)
 
 			const intendedPath = localStorage.getItem('intendedPath') || '/profile'
-			localStorage.removeItem('intendedPath')
 			navigate(intendedPath, { replace: true })
 		},
 		onError: err => {
-			console.log('Error:', err.message)
+			console.error('Error:', err.message)
 			toast.error('Provided email or password is incorrect')
 		},
 	})
@@ -53,7 +52,6 @@ export function useSignUp() {
 	} = useMutation({
 		mutationFn: (args: SignUpProps) => signUpApi(args),
 		onSuccess: () => {
-			console.log('Sign-up successful, navigating to login...')
 			toast.success(`Account successfully created!`)
 			navigate('/login', { replace: true })
 		},
