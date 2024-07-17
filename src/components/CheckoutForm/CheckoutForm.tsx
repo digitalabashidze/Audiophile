@@ -1,6 +1,7 @@
 import { useState, forwardRef, useImperativeHandle } from 'react'
 import { FormProvider, useForm, Controller } from 'react-hook-form'
 import { useUser } from '../../hooks/useAuth'
+import { useCreateOrder } from '../../hooks/useOrders'
 import Input from '../Input/Input'
 import Spinner from '../Spinner/Spinner'
 import Icon from '@images/checkout/icon-cash-on-delivery.svg'
@@ -40,6 +41,7 @@ const CheckoutForm = forwardRef(
 		ref
 	) => {
 		const { isLoading, user: userProfile } = useUser()
+		const { createOrder } = useCreateOrder()
 
 		const methods = useForm<CheckoutFormValues>({
 			defaultValues: {
@@ -57,13 +59,23 @@ const CheckoutForm = forwardRef(
 		})
 
 		const onSubmit = (data: CheckoutFormValues) => {
-			const fullData = {
-				...data,
-				cartItems,
+			const orderData = {
+				user_id: userProfile?.id || '',
+				name: data.name,
+				email: data.email,
+				phone_number: data.phoneNumber,
+				address: data.address,
+				zip_code: data.zipCode,
+				city: data.city,
+				country: data.country,
+				payment_method: data.paymentMethod,
+				e_money_number: data.eMoneyNumber,
+				e_money_pin: data.eMoneyPin,
+				cart_items: cartItems,
 			}
 
 			try {
-				console.log(fullData)
+				createOrder(orderData)
 				methods.reset()
 				onSuccessSubmit(true)
 			} catch (error) {
@@ -230,13 +242,25 @@ const CheckoutForm = forwardRef(
 											name='eMoneyNumber'
 											label='e-Money Number'
 											placeholder='Enter your e-Money number'
-											rules={{ required: 'Number is required' }}
+											rules={{
+												required: 'number is required',
+												pattern: {
+													value: /^[0-9]{3,10}$/,
+													message: 'Wrong format',
+												},
+											}}
 										/>
 										<Input
 											name='eMoneyPin'
 											label='e-Money PIN'
 											placeholder='Enter your e-Money PIN'
-											rules={{ required: 'PIN is required' }}
+											rules={{
+												required: 'PIN is required',
+												pattern: {
+													value: /^[0-9]{3,10}$/,
+													message: 'Wrong format',
+												},
+											}}
 										/>
 									</div>
 								</div>
