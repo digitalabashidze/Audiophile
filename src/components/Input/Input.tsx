@@ -2,26 +2,29 @@ import { InputHTMLAttributes } from 'react'
 import { useFormContext, Controller } from 'react-hook-form'
 import styles from './Input.module.scss'
 
+interface ValidationRules {
+	required?: string | boolean
+	pattern?: {
+		value: RegExp
+		message: string
+	}
+	minLength?: {
+		value: number
+		message: string
+	}
+	maxLength?: {
+		value: number
+		message: string
+	}
+	validate?: (value: string) => boolean | string
+}
+
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 	name: string
 	label: string
 	placeholder?: string
 	type?: string
-	rules?: {
-		required?: string | boolean
-		pattern?: {
-			value: RegExp
-			message: string
-		}
-		minLength?: {
-			value: number
-			message: string
-		}
-		maxLength?: {
-			value: number
-			message: string
-		}
-	}
+	rules?: ValidationRules
 }
 
 const Input = ({

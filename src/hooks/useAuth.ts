@@ -53,7 +53,7 @@ export function useSignUp() {
 		mutationFn: (args: SignUpProps) => signUpApi(args),
 		onSuccess: () => {
 			toast.success(`Account successfully created!`)
-			navigate('/login', { replace: true })
+			navigate('/profile', { replace: true })
 		},
 		onError: err => {
 			console.error('Error during sign-up:', err.message)
