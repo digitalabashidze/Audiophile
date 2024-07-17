@@ -16,8 +16,17 @@ const Modal = ({
 }: ModalProps) => {
 	if (!isOpen) return null
 
+	const handleOverlayClick = () => {
+		if (position !== 'center') {
+			onClose()
+		}
+	}
+
 	return (
-		<div className={`${styles.overlay} ${styles[position]}`} onClick={onClose}>
+		<div
+			className={`${styles.overlay} ${styles[position]}`}
+			onClick={handleOverlayClick}
+		>
 			<div
 				className={`${styles.modal} ${styles[position]}`}
 				onClick={e => e.stopPropagation()}
